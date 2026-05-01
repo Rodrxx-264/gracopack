@@ -328,6 +328,10 @@ app.get('/login', (req, res) => {
 // Alias para evitar romper redirecciones existentes si las hubiera
 app.get('/login.html', (req, res) => res.redirect('/login'));
 
-app.listen(PORT, () => {
-    console.log(`Servidor de Graco Pack corriendo en http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => {
+        console.log(`Servidor de Graco Pack corriendo en http://localhost:${PORT}`);
+    });
+}
+
+module.exports = app;
