@@ -288,14 +288,21 @@ app.delete('/api/products/:id', requireAuth, (req, res) => {
 app.get(ADMIN_SECURE_PATH, (req, res) => {
     const key = req.query.key;
     
-    if (key === ADMIN_SECRET_KEY) {
-        // Solo si la clave coincide y tiene sesión iniciada, mostramos el admin
-        // Si no tiene sesión, el propio admin.html lo redirigirá al login
-        res.sendFile(path.join(__dirname, 'private', 'admin.html'));
-    } else {
-        // Si la clave no coincide, simulamos un 404 para ocultar la existencia de la página
-        res.status(404).send('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Error</title></head><body><pre>Cannot GET ' + ADMIN_SECURE_PATH + '</pre></body></html>');
+    // 1. Validar la clave secreta primero para mantener la ruta "oculta"
+    if (key !== ADMIN_SECRET_KEY) {
+        // Si la clave no coincide, simulamos un 404
+        return res.status(404).send('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Error</title></head><body><pre>Cannot GET ' + ADMIN_SECURE_PATH + '</pre></body></html>');
     }
+
+    // 2. Validar si el usuario tiene sesión iniciada
+    if (req.cookies.auth !== SESSION_SECRET) {
+        // Si no tiene sesión, redirigir al login guardando la URL actual (con la key)
+        const currentUrl = req.originalUrl;
+        return res.redirect(`/login?redirect=${encodeURIComponent(currentUrl)}`);
+    }
+
+    // 3. Si tiene la clave Y sesión iniciada, servimos el archivo
+    res.sendFile(path.join(__dirname, 'private', 'admin.html'));
 });
 
 // Ruta para el login (ahora fuera de public)
