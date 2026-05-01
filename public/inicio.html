@@ -116,33 +116,18 @@
         </div>
     </header>
 
-    <!-- TOP CAROUSEL (PANORAMIC) -->
-    <section class="w-full bg-white pt-6">
+    <!-- INTEGRATED HERO + CAROUSEL SECTION -->
+    <section class="relative w-full bg-white pt-6 pb-20">
         <div class="max-w-[1400px] mx-auto px-4">
-            <div class="relative group w-full aspect-[3115/1043] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-lg border border-gray-100">
+            <!-- Carousel (Panoramic) -->
+            <div class="relative group w-full aspect-[3115/1043] rounded-[1.5rem] md:rounded-[2.5rem] overflow-hidden shadow-lg border border-gray-100 mb-12">
                 <div id="carousel" class="w-full h-full relative">
-                    <!-- Slide 1 -->
-                    <div class="carousel-item active absolute inset-0 w-full h-full">
-                        <img src="images/productos/slide_1.jpg" alt="Slide 1" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-item absolute inset-0 w-full h-full">
-                        <img src="images/productos/slide_2.jpg" alt="Slide 2" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-item absolute inset-0 w-full h-full">
-                        <img src="images/productos/slide_3.jpg" alt="Slide 3" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Slide 4 -->
-                    <div class="carousel-item absolute inset-0 w-full h-full">
-                        <img src="images/productos/slide_4.jpg" alt="Slide 4" class="w-full h-full object-cover">
-                    </div>
-                    <!-- Slide 5 -->
-                    <div class="carousel-item absolute inset-0 w-full h-full">
-                        <img src="images/productos/slide_5.jpg" alt="Slide 5" class="w-full h-full object-cover">
-                    </div>
+                    <div class="carousel-item active absolute inset-0 w-full h-full"><img src="images/productos/slide_1.jpg" alt="Slide 1" class="w-full h-full object-cover"></div>
+                    <div class="carousel-item absolute inset-0 w-full h-full"><img src="images/productos/slide_2.jpg" alt="Slide 2" class="w-full h-full object-cover"></div>
+                    <div class="carousel-item absolute inset-0 w-full h-full"><img src="images/productos/slide_3.jpg" alt="Slide 3" class="w-full h-full object-cover"></div>
+                    <div class="carousel-item absolute inset-0 w-full h-full"><img src="images/productos/slide_4.jpg" alt="Slide 4" class="w-full h-full object-cover"></div>
+                    <div class="carousel-item absolute inset-0 w-full h-full"><img src="images/productos/slide_5.jpg" alt="Slide 5" class="w-full h-full object-cover"></div>
                 </div>
-
                 <!-- Arrows -->
                 <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 text-brand-blue w-10 h-10 rounded-full backdrop-blur-md transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
                     <i class="fa-solid fa-chevron-left text-sm"></i>
@@ -150,7 +135,6 @@
                 <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/40 hover:bg-white/60 text-brand-blue w-10 h-10 rounded-full backdrop-blur-md transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
                     <i class="fa-solid fa-chevron-right text-sm"></i>
                 </button>
-
                 <!-- Indicators -->
                 <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
                     <button onclick="goToSlide(0)" class="dot active w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all"></button>
@@ -160,69 +144,26 @@
                     <button onclick="goToSlide(4)" class="dot w-2 h-2 rounded-full bg-white/50 hover:bg-white transition-all"></button>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- HERO SECTION -->
-    <section class="relative bg-cover bg-center py-16 md:py-24" style="background-image: url('fondog.jpg');">
-        <!-- Overlay -->
-        <div class="absolute inset-0 bg-white/80 backdrop-blur-[2px]"></div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold text-brand-blue mb-6 tracking-tighter leading-[1.1]">
-                <span class="lang-es">Empaques de alta <span class="text-brand-green">precisión</span>.</span>
-                <span class="lang-en hidden-lang">High <span class="text-brand-green">precision</span> packaging.</span>
-            </h1>
-            <p class="text-lg text-gray-600 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-                <span class="lang-es">Fabricación y comercialización de empaques para alimentos. Diseñados para
-                    proteger, conservar y destacar tu producto a gran escala.</span>
-                <span class="lang-en hidden-lang">Manufacture and commercialization of food packaging. Designed to
-                    protect, preserve and highlight your product on a large scale.</span>
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="index.html"
-                    class="px-8 py-3.5 bg-brand-green text-white font-semibold rounded-full hover:bg-brand-green/90 transition-all shadow-sm flex items-center justify-center gap-2">
-                    <span class="lang-es">Ver Catálogo</span><span class="lang-en hidden-lang">View Catalog</span> <i
-                        class="fa-solid fa-arrow-right"></i>
-                </a>
-                <a href="nosotros.html"
-                    class="px-8 py-3.5 bg-white border border-gray-300 text-gray-700 font-semibold rounded-full hover:bg-gray-50 transition-all shadow-sm">
-                    <span class="lang-es">Conoce Más</span><span class="lang-en hidden-lang">Learn More</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- POR QUÉ ELEGIRNOS -->
-    <section class="py-16 bg-brand-blue text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div
-                class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
-                <div class="py-4 px-6">
-                    <i class="fa-solid fa-shield-halved text-4xl text-brand-green mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Certificación FDA</h3>
-                    <p class="text-sm text-blue-100 font-light">
-                        <span class="lang-es">Materiales 100% seguros para contacto directo con alimentos.</span>
-                        <span class="lang-en hidden-lang">100% safe materials for direct contact with food.</span>
-                    </p>
-                </div>
-                <div class="py-4 px-6">
-                    <i class="fa-solid fa-leaf text-4xl text-brand-green mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Línea Sostenible</h3>
-                    <p class="text-sm text-blue-100 font-light">
-                        <span class="lang-es">Empaques Bio y Eco-amigables para reducir tu huella de carbono.</span>
-                        <span class="lang-en hidden-lang">Bio and Eco-friendly packaging to reduce your carbon
-                            footprint.</span>
-                    </p>
-                </div>
-                <div class="py-4 px-6">
-                    <i class="fa-solid fa-boxes-stacked text-4xl text-brand-green mb-4"></i>
-                    <h3 class="text-xl font-bold mb-2">Volumen Industrial</h3>
-                    <p class="text-sm text-blue-100 font-light">
-                        <span class="lang-es">Capacidad de distribución a gran escala para clientes corporativos.</span>
-                        <span class="lang-en hidden-lang">Large-scale distribution capacity for corporate
-                            clients.</span>
-                    </p>
+            <!-- Hero Text content -->
+            <div class="relative z-10 max-w-7xl mx-auto text-center px-4">
+                <h1 class="text-4xl md:text-7xl font-bold text-brand-blue mb-6 md:mb-8 tracking-tighter leading-[1.1]">
+                    <span class="lang-es">Empaques de alta <span class="text-brand-green">precisión</span>.</span>
+                    <span class="lang-en hidden-lang">High <span class="text-brand-green">precision</span> packaging.</span>
+                </h1>
+                <p class="text-xl text-gray-600 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
+                    <span class="lang-es">Fabricación y comercialización de empaques para alimentos. Diseñados para
+                        proteger, conservar y destacar tu producto a gran escala.</span>
+                    <span class="lang-en hidden-lang">Manufacture and commercialization of food packaging. Designed to
+                        protect, preserve and highlight your product on a large scale.</span>
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="index.html" class="px-8 py-3.5 bg-brand-green text-white font-semibold rounded-full hover:bg-brand-green/90 transition-all shadow-sm flex items-center justify-center gap-2">
+                        <span class="lang-es">Ver Catálogo</span><span class="lang-en hidden-lang">View Catalog</span> <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <a href="nosotros.html" class="px-8 py-3.5 bg-white border border-gray-300 text-gray-700 font-semibold rounded-full hover:bg-gray-50 transition-all shadow-sm">
+                        <span class="lang-es">Conoce Más</span><span class="lang-en hidden-lang">Learn More</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -317,6 +258,41 @@
                     <span class="lang-es">Ver catálogo completo</span><span class="lang-en hidden-lang">View full
                         catalog</span> <i class="fa-solid fa-arrow-right"></i>
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- POR QUÉ ELEGIRNOS -->
+    <section class="py-16 bg-brand-blue text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
+                <div class="py-4 px-6">
+                    <i class="fa-solid fa-shield-halved text-4xl text-brand-green mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Certificación FDA</h3>
+                    <p class="text-sm text-blue-100 font-light">
+                        <span class="lang-es">Materiales 100% seguros para contacto directo con alimentos.</span>
+                        <span class="lang-en hidden-lang">100% safe materials for direct contact with food.</span>
+                    </p>
+                </div>
+                <div class="py-4 px-6">
+                    <i class="fa-solid fa-leaf text-4xl text-brand-green mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Línea Sostenible</h3>
+                    <p class="text-sm text-blue-100 font-light">
+                        <span class="lang-es">Empaques Bio y Eco-amigables para reducir tu huella de carbono.</span>
+                        <span class="lang-en hidden-lang">Bio and Eco-friendly packaging to reduce your carbon
+                            footprint.</span>
+                    </p>
+                </div>
+                <div class="py-4 px-6">
+                    <i class="fa-solid fa-boxes-stacked text-4xl text-brand-green mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Volumen Industrial</h3>
+                    <p class="text-sm text-blue-100 font-light">
+                        <span class="lang-es">Capacidad de distribución a gran escala para clientes corporativos.</span>
+                        <span class="lang-en hidden-lang">Large-scale distribution capacity for corporate
+                            clients.</span>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
