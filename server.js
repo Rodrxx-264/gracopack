@@ -46,31 +46,52 @@ const UserSchema = new mongoose.Schema({
     imagen: String
 });
 
+// Transformar _id a id para compatibilidad con el frontend
+const transformId = (doc, ret) => {
+    ret.id = ret._id.toString();
+    delete ret._id;
+    delete ret.__v;
+};
+
+ProductSchema.set('toJSON', { transform: transformId });
+ProductSchema.set('toObject', { transform: transformId });
+UserSchema.set('toJSON', { transform: transformId });
+UserSchema.set('toObject', { transform: transformId });
+
 const Product = mongoose.model('Product', ProductSchema);
 const User = mongoose.model('User', UserSchema);
 
 // Función de Migración (JSON -> MongoDB)
 async function migrateData() {
     try {
+        console.log('🔍 Verificando estado de la base de datos...');
         const productCount = await Product.countDocuments();
         if (productCount === 0 && fs.existsSync(DB_FILE)) {
             console.log('🚀 Migrando productos desde JSON a MongoDB...');
-            const products = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
-            // Limpiar IDs de texto si existen para que Mongo asigne ObjectIds
-            const cleanProducts = products.map(({ id, ...rest }) => rest);
-            await Product.insertMany(cleanProducts);
-            console.log('✅ Productos migrados.');
+            const productsData = fs.readFileSync(DB_FILE, 'utf8');
+            const products = JSON.parse(productsData);
+            
+            if (products.length > 0) {
+                // Mongo asignará ObjectIds automáticamente si no hay _id
+                const cleanProducts = products.map(({ id, ...rest }) => rest);
+                await Product.insertMany(cleanProducts);
+                console.log(`✅ ${products.length} productos migrados con éxito.`);
+            }
+        } else {
+            console.log(`ℹ️ Hay ${productCount} productos en MongoDB.`);
         }
 
         const userCount = await User.countDocuments();
         if (userCount === 0 && fs.existsSync(ADMIN_DATA_FILE)) {
             console.log('🚀 Migrando usuarios desde JSON a MongoDB...');
             const users = JSON.parse(fs.readFileSync(ADMIN_DATA_FILE, 'utf8'));
-            await User.insertMany(users);
-            console.log('✅ Usuarios migrados.');
+            if (users.length > 0) {
+                await User.insertMany(users);
+                console.log(`✅ ${users.length} usuarios migrados.`);
+            }
         }
     } catch (err) {
-        console.error('❌ Error en la migración:', err);
+        console.error('❌ Error crítico en la migración:', err);
     }
 }
 
