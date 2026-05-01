@@ -95,6 +95,24 @@
             background-color: #16A34A;
             width: 1.5rem;
         }
+
+        /* Infinite Ticker Styles */
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-ticker {
+            display: flex;
+            width: max-content;
+            animation: ticker 30s linear infinite;
+        }
+        .ticker-item {
+            flex-shrink: 0;
+            padding: 0 1rem;
+        }
+        .animate-ticker:hover {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 
@@ -219,96 +237,48 @@
         </div>
     </section>
 
-    <!-- CATEGORÍAS DESTACADAS -->
-    <section class="py-24 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12">
+    <!-- CATEGORÍAS DESTACADAS (INFINITE CAROUSEL) -->
+    <section class="py-20 bg-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+            <div class="flex justify-between items-end">
                 <div>
                     <h2 class="text-3xl md:text-4xl font-bold text-brand-blue tracking-tight mb-3">
-                        <span class="lang-es">Categorías Destacadas</span><span class="lang-en hidden-lang">Featured
-                            Categories</span>
+                        <span class="lang-es">Categorías Destacadas</span><span class="lang-en hidden-lang">Featured Categories</span>
                     </h2>
                     <p class="text-gray-500 font-light">
-                        <span class="lang-es">Explora nuestras soluciones más populares.</span>
-                        <span class="lang-en hidden-lang">Explore our most popular solutions.</span>
+                        <span class="lang-es">Explora nuestra variedad de soluciones líderes en el mercado.</span>
+                        <span class="lang-en hidden-lang">Explore our variety of market-leading solutions.</span>
                     </p>
                 </div>
-                <a href="index.html"
-                    class="hidden md:flex text-brand-green font-semibold items-center gap-2 hover:text-brand-blue transition-colors">
-                    <span class="lang-es">Ver catálogo completo</span><span class="lang-en hidden-lang">View full
-                        catalog</span> <i class="fa-solid fa-arrow-right"></i>
+                <a href="index.html" class="hidden md:flex text-brand-green font-semibold items-center gap-2 hover:text-brand-blue transition-colors">
+                    <span class="lang-es">Ver catálogo completo</span><span class="lang-en hidden-lang">View full catalog</span> <i class="fa-solid fa-arrow-right"></i>
                 </a>
             </div>
+        </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tarjeta 1 -->
-                <a href="index.html"
-                    class="group bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div
-                        class="bg-brand-green/5 aspect-square rounded-2xl p-6 flex items-center justify-center mb-6 relative">
-                        <div
-                            class="absolute top-3 right-3 bg-white text-brand-green text-[10px] font-bold px-2 py-0.5 rounded-full">
-                            <i class="fa-solid fa-leaf"></i> Bio</div>
-                        <img src="https://gracopack.com/images/productos/4clamshelssen.jpg" alt="Eco Line"
-                            class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <h3 class="text-lg font-bold text-brand-blue mb-1">
-                        <span class="lang-es">Línea Ecológica</span><span class="lang-en hidden-lang">Eco Line</span>
-                    </h3>
-                    <p class="text-sm text-gray-400 font-light"><span class="lang-es">Empaques Bio</span><span
-                            class="lang-en hidden-lang">Bio Packaging</span></p>
-                </a>
-
-                <!-- Tarjeta 2 -->
-                <a href="index.html"
-                    class="group bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div class="bg-gray-50 aspect-square rounded-2xl p-6 flex items-center justify-center mb-6">
-                        <img src="https://gracopack.com/images/productos/1domospasteleros.jpg" alt="Domos"
-                            class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <h3 class="text-lg font-bold text-brand-blue mb-1">
-                        <span class="lang-es">Domos Pasteleros</span><span class="lang-en hidden-lang">Pastry
-                            Domes</span>
-                    </h3>
-                    <p class="text-sm text-gray-400 font-light"><span class="lang-es">Alta transparencia</span><span
-                            class="lang-en hidden-lang">High transparency</span></p>
-                </a>
-
-                <!-- Tarjeta 3 -->
-                <a href="index.html"
-                    class="group bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div class="bg-gray-50 aspect-square rounded-2xl p-6 flex items-center justify-center mb-6">
-                        <img src="https://gracopack.com/images/productos/2ensaladeras.jpg" alt="Ensaladeras"
-                            class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <h3 class="text-lg font-bold text-brand-blue mb-1">Ensaladeras</h3>
-                    <p class="text-sm text-gray-400 font-light"><span class="lang-es">Cierre hermético</span><span
-                            class="lang-en hidden-lang">Hermetic seal</span></p>
-                </a>
-
-                <!-- Tarjeta 4 -->
-                <a href="index.html"
-                    class="group bg-white rounded-3xl p-6 border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 block">
-                    <div class="bg-gray-50 aspect-square rounded-2xl p-6 flex items-center justify-center mb-6">
-                        <img src="https://gracopack.com/images/productos/3bandejashuevos.jpg" alt="Bandejas"
-                            class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-500">
-                    </div>
-                    <h3 class="text-lg font-bold text-brand-blue mb-1">
-                        <span class="lang-es">Bandejas Industriales</span><span class="lang-en hidden-lang">Industrial
-                            Trays</span>
-                    </h3>
-                    <p class="text-sm text-gray-400 font-light"><span class="lang-es">Alto volumen</span><span
-                            class="lang-en hidden-lang">High volume</span></p>
-                </a>
+        <!-- Ticker Container -->
+        <div class="relative w-full">
+            <div class="animate-ticker">
+                <!-- Original Items -->
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/1domospasteleros.jpg" alt="Domos Pasteleros" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/2ensaladeras.jpg" alt="Ensaladeras" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/3bandejashuevos.jpg" alt="Bandejas Industriales" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/4clamshelssen.jpg" alt="Línea Eco" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/5delicontainers.jpg" alt="Deli Containers" class="max-h-full object-contain"></div></div>
+                
+                <!-- Duplicate for seamless loop -->
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/1domospasteleros.jpg" alt="Domos Pasteleros" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/2ensaladeras.jpg" alt="Ensaladeras" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/3bandejashuevos.jpg" alt="Bandejas Industriales" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/4clamshelssen.jpg" alt="Línea Eco" class="max-h-full object-contain"></div></div>
+                <div class="ticker-item"><div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm w-64 md:w-80 aspect-square flex items-center justify-center"><img src="images/productos/carrusel/5delicontainers.jpg" alt="Deli Containers" class="max-h-full object-contain"></div></div>
             </div>
+        </div>
 
-            <div class="mt-8 text-center md:hidden">
-                <a href="index.html"
-                    class="inline-flex text-brand-green font-semibold items-center gap-2 border border-brand-green/30 px-6 py-2 rounded-full">
-                    <span class="lang-es">Ver catálogo completo</span><span class="lang-en hidden-lang">View full
-                        catalog</span> <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+        <div class="mt-12 text-center md:hidden">
+            <a href="index.html" class="inline-flex text-brand-green font-semibold items-center gap-2 border border-brand-green/30 px-6 py-2 rounded-full">
+                <span class="lang-es">Ver catálogo completo</span><span class="lang-en hidden-lang">View full catalog</span> <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
     </section>
 
