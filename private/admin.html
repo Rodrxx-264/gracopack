@@ -495,7 +495,10 @@
                 loadProducts();
             } else {
                 const errData = await res.json();
-                alert('Error: ' + (errData.error || 'No se pudo guardar el producto'));
+                let msg = errData.error || 'No se pudo guardar el producto';
+                if (errData.details) msg += '\n\nDetalle técnico: ' + errData.details;
+                if (errData.hint) msg += '\n\nSugerencia: ' + errData.hint;
+                alert(msg);
             }
 
             btn.innerHTML = editId ? '<i class="fa-solid fa-save"></i> <span>Actualizar Producto</span>' : '<i class="fa-solid fa-save"></i> <span>Guardar Producto</span>';

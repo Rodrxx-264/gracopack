@@ -31,6 +31,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Multer para manejar la subida de archivos (usamos memoria para Vercel)
 const upload = multer({ storage: multer.memoryStorage() });
 
+// Helper para subir a Cloudinary mediante Stream (más fiable que Data URI)
+const streamUpload = (buffer, folder) => {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            { folder: folder },
+            (error, result) => {
+                if (error) {
+                    console.error('CLOUDINARY ERROR:', error);
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            }
+        );
+        stream.end(buffer);
+    });
+};
+
 // Credenciales (Ahora leídas de admin_data.json)
 const SESSION_SECRET = 'graco-secret-2026';
 
@@ -187,20 +205,29 @@ app.post('/api/products', requireAuth, upload.single('imagen'), async (req, res)
         
         let finalImageUrl = imagen_url;
 
+        // Si viene un archivo, lo subimos a Cloudinary usando Stream
         if (req.file) {
-            const b64 = Buffer.from(req.file.buffer).toString("base64");
-            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
-            const result = await cloudinary.uploader.upload(dataURI, {
-                folder: 'graco/productos'
-            });
-            finalImageUrl = result.secure_url;
+            try {
+                const result = await streamUpload(req.file.buffer, 'graco/productos');
+                finalImageUrl = result.secure_url;
+            } catch (uploadError) {
+                return res.status(500).json({ error: 'Error al subir imagen a Cloudinary', details: uploadError.message });
+            }
         }
 
         if (!finalImageUrl) {
-            return res.status(400).json({ error: 'La imagen es obligatoria' });
+            return res.status(400).json({ error: 'La imagen es obligatoria (no se recibió archivo ni URL)' });
         }
 
-        const productos = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+        // Leer base de datos
+        let productos = [];
+        try {
+            productos = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+        } catch (readError) {
+            console.error('Error leyendo DB:', readError);
+            return res.status(500).json({ error: 'Error al leer la base de datos', details: readError.message });
+        }
+
         const nuevoProducto = {
             id: Date.now().toString(),
             codigo,
@@ -216,12 +243,23 @@ app.post('/api/products', requireAuth, upload.single('imagen'), async (req, res)
         };
 
         productos.push(nuevoProducto);
-        fs.writeFileSync(DB_FILE, JSON.stringify(productos, null, 2));
+        
+        try {
+            fs.writeFileSync(DB_FILE, JSON.stringify(productos, null, 2));
+        } catch (writeError) {
+            console.error('Error escribiendo DB:', writeError);
+            // Si falla aquí, es probable que estemos en Vercel (read-only)
+            return res.status(500).json({ 
+                error: 'Error al guardar en la base de datos', 
+                details: writeError.message,
+                hint: 'Si estás en Vercel, recuerda que el sistema de archivos es de solo lectura. Considera usar una base de datos real.'
+            });
+        }
 
         res.status(201).json(nuevoProducto);
     } catch (error) {
-        console.error('ERROR AL CREAR PRODUCTO:', error);
-        res.status(500).json({ error: 'Error al crear producto' });
+        console.error('ERROR CRÍTICO AL CREAR PRODUCTO:', error);
+        res.status(500).json({ error: 'Error interno del servidor', details: error.message });
     }
 });
 
@@ -230,20 +268,25 @@ app.put('/api/products/:id', requireAuth, upload.single('imagen'), async (req, r
         const { id } = req.params;
         const { codigo, nombre_es, nombre_en, descripcion_es, descripcion_en, dimension, unidad_empaque, categoria, isEco, imagen_url } = req.body;
         
-        const productos = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
-        const idx = productos.findIndex(p => p.id === id);
+        let productos = [];
+        try {
+            productos = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+        } catch (readError) {
+            return res.status(500).json({ error: 'Error al leer la base de datos' });
+        }
 
+        const idx = productos.findIndex(p => p.id === id);
         if (idx === -1) return res.status(404).json({ error: 'Producto no encontrado' });
 
         let finalImageUrl = imagen_url || productos[idx].imagen;
 
         if (req.file) {
-            const b64 = Buffer.from(req.file.buffer).toString("base64");
-            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
-            const result = await cloudinary.uploader.upload(dataURI, {
-                folder: 'graco/productos'
-            });
-            finalImageUrl = result.secure_url;
+            try {
+                const result = await streamUpload(req.file.buffer, 'graco/productos');
+                finalImageUrl = result.secure_url;
+            } catch (uploadError) {
+                return res.status(500).json({ error: 'Error al subir nueva imagen a Cloudinary' });
+            }
         }
 
         productos[idx] = {
@@ -260,11 +303,20 @@ app.put('/api/products/:id', requireAuth, upload.single('imagen'), async (req, r
             isEco: isEco !== undefined ? (isEco === 'true' || isEco === true) : productos[idx].isEco
         };
 
-        fs.writeFileSync(DB_FILE, JSON.stringify(productos, null, 2));
+        try {
+            fs.writeFileSync(DB_FILE, JSON.stringify(productos, null, 2));
+        } catch (writeError) {
+            return res.status(500).json({ 
+                error: 'Error al guardar cambios', 
+                details: writeError.message,
+                hint: 'En Vercel el sistema de archivos es de solo lectura.'
+            });
+        }
+        
         res.json(productos[idx]);
     } catch (error) {
         console.error('ERROR AL ACTUALIZAR PRODUCTO:', error);
-        res.status(500).json({ error: 'Error al editar producto' });
+        res.status(500).json({ error: 'Error al editar producto', details: error.message });
     }
 });
 

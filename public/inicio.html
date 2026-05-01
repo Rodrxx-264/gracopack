@@ -28,6 +28,23 @@
         .hidden-lang {
             display: none !important;
         }
+
+        /* Carousel Styles */
+        .carousel-item {
+            display: none;
+        }
+        .carousel-item.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .dot.active {
+            background-color: #16A34A;
+            width: 1.5rem;
+        }
     </style>
 </head>
 
@@ -98,6 +115,54 @@
         </div>
         </div>
     </header>
+
+    <!-- CAROUSEL SECTION -->
+    <section class="relative w-full h-[400px] md:h-[600px] overflow-hidden group">
+        <div id="carousel" class="w-full h-full relative">
+            <!-- Slide 1 -->
+            <div class="carousel-item active absolute inset-0 w-full h-full transition-all duration-700">
+                <img src="images/productos/slide_1.jpg" alt="Slide 1" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item absolute inset-0 w-full h-full transition-all duration-700">
+                <img src="images/productos/slide_2.jpg" alt="Slide 2" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item absolute inset-0 w-full h-full transition-all duration-700">
+                <img src="images/productos/slide_3.jpg" alt="Slide 3" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item absolute inset-0 w-full h-full transition-all duration-700">
+                <img src="images/productos/slide_4.jpg" alt="Slide 4" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+            <!-- Slide 5 -->
+            <div class="carousel-item absolute inset-0 w-full h-full transition-all duration-700">
+                <img src="images/productos/slide_5.jpg" alt="Slide 5" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-black/10"></div>
+            </div>
+        </div>
+
+        <!-- Arrows -->
+        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white/50 text-white w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-md transition-all flex items-center justify-center opacity-0 group-hover:opacity-100 z-20">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Indicators -->
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+            <button onclick="goToSlide(0)" class="dot active w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"></button>
+            <button onclick="goToSlide(1)" class="dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"></button>
+            <button onclick="goToSlide(2)" class="dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"></button>
+            <button onclick="goToSlide(3)" class="dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"></button>
+            <button onclick="goToSlide(4)" class="dot w-2.5 h-2.5 rounded-full bg-white/40 hover:bg-white transition-all"></button>
+        </div>
+    </section>
 
     <!-- HERO SECTION -->
     <section class="relative bg-cover bg-center py-32 md:py-48" style="background-image: url('fondog.jpg');">
@@ -361,6 +426,50 @@
                 icon.classList.replace('fa-bars', 'fa-times');
             }
         }
+
+        // Carousel Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-item');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        let carouselInterval;
+
+        function showSlide(index) {
+            slides.forEach(s => s.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let next = (currentSlide + 1) % totalSlides;
+            showSlide(next);
+            resetInterval();
+        }
+
+        function prevSlide() {
+            let prev = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(prev);
+            resetInterval();
+        }
+
+        function goToSlide(index) {
+            showSlide(index);
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(carouselInterval);
+            startCarousel();
+        }
+
+        function startCarousel() {
+            carouselInterval = setInterval(nextSlide, 5000);
+        }
+
+        startCarousel();
     </script>
 </body>
 
