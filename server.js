@@ -17,10 +17,10 @@ const DB_FILE = path.join(__dirname, 'productos.json');
 const ADMIN_DATA_FILE = path.join(__dirname, 'admin_data.json');
 
 // Conexión a MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, { dbName: 'gracopack' })
     .then(() => {
-        console.log('✅ Conectado a MongoDB Atlas');
-        migrateData(); // Iniciar migración si es necesario
+        console.log('✅ Conectado a MongoDB Atlas (DB: gracopack)');
+        migrateData();
     })
     .catch(err => console.error('❌ Error de conexión a MongoDB:', err));
 
@@ -152,9 +152,29 @@ const requireAuth = (req, res, next) => {
 app.get('/api/products', async (req, res) => {
     try {
         const products = await Product.find().sort({ createdAt: -1 });
+        console.log(`🔍 API: Enviando ${products.length} productos.`);
         res.json(products);
     } catch (err) {
+        console.error('❌ Error API /api/products:', err);
         res.status(500).json({ error: 'Error al obtener productos' });
+    }
+});
+
+app.get('/api/debug/db', async (req, res) => {
+    try {
+        const count = await Product.countDocuments();
+        const usersCount = await User.countDocuments();
+        const sample = await Product.findOne();
+        res.json({
+            status: 'connected',
+            database: mongoose.connection.name,
+            productsCount: count,
+            usersCount: usersCount,
+            sampleProduct: sample,
+            envSet: !!process.env.MONGODB_URI
+        });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
 });
 
