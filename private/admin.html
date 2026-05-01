@@ -249,8 +249,8 @@
 
     <script>
         // CONFIGURACIÓN CLOUDINARY
-        const CLOUD_NAME = 'TU_CLOUD_NAME'; // Cambia por tu Cloud Name
-        const UPLOAD_PRESET = 'TU_UPLOAD_PRESET'; // Cambia por tu Unsigned Upload Preset
+        const CLOUD_NAME = 'dgy2nqird'; 
+        const UPLOAD_PRESET = ''; // Opcional si se usa backend upload
 
         // Función genérica para subir a Cloudinary
         async function uploadToCloudinary(fileInputId) {
@@ -306,7 +306,8 @@
             const res = await fetch('/admin/usuarios/crear', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ nombre, password, enable2FA, imageUrl })
+                body: JSON.stringify({ nombre, password, enable2FA, imageUrl }),
+                credentials: 'include'
             });
 
             const data = await res.json();
@@ -325,7 +326,7 @@
 
         // 2FA Functions
         async function open2FASetup() {
-            const res = await fetch('/admin/2fa/setup');
+            const res = await fetch('/admin/2fa/setup', { credentials: 'include' });
             const data = await res.json();
             document.getElementById('qrCodeImg').src = data.qrCodeUrl;
             document.getElementById('modal2FA').classList.remove('hidden');
@@ -342,7 +343,8 @@
             const res = await fetch('/admin/2fa/verify-and-activate', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ token })
+                body: JSON.stringify({ token }),
+                credentials: 'include'
             });
             const data = await res.json();
             if (data.success) {
@@ -356,7 +358,7 @@
         // Cargar productos
         let allProducts = [];
         async function loadProducts() {
-            const resData = await fetch('/api/products'); 
+            const resData = await fetch('/api/products', { credentials: 'include' }); 
             if (resData.status === 401) {
                 // Si no hay sesión, vamos al login pero guardamos la URL actual para volver
                 const currentUrl = window.location.pathname + window.location.search;
@@ -465,25 +467,28 @@
                 res = await fetch(url, {
                     method: method,
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify(data),
+                    credentials: 'include'
                 });
-            } else {
-                // Si estamos editando y no subimos imagen nueva, enviamos los datos actuales
-                if (editId && document.getElementById('product-image-input').files.length === 0) {
-                    const data = {};
-                    formData.forEach((value, key) => { if(key !== 'imagen') data[key] = value; });
-                    res = await fetch(url, {
-                        method: method,
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(data)
-                    });
                 } else {
-                    res = await fetch(url, {
-                        method: method,
-                        body: formData
-                    });
+                    // Si estamos editando y no subimos imagen nueva, enviamos los datos actuales
+                    if (editId && document.getElementById('product-image-input').files.length === 0) {
+                        const data = {};
+                        formData.forEach((value, key) => { if(key !== 'imagen') data[key] = value; });
+                        res = await fetch(url, {
+                            method: method,
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data),
+                            credentials: 'include'
+                        });
+                    } else {
+                        res = await fetch(url, {
+                            method: method,
+                            body: formData,
+                            credentials: 'include'
+                        });
+                    }
                 }
-            }
 
             if (res.ok) {
                 cancelEdit();
@@ -500,7 +505,10 @@
         // Eliminar producto
         async function deleteProduct(id) {
             if (confirm('¿Estás seguro de eliminar este producto?')) {
-                await fetch(`/api/products/${id}`, { method: 'DELETE' });
+                await fetch(`/api/products/${id}`, { 
+                    method: 'DELETE',
+                    credentials: 'include'
+                });
                 loadProducts();
             }
         }

@@ -28,16 +28,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Multer para subir imágenes
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, 'public', 'images', 'productos'));
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-' + file.originalname);
-    }
-});
-const upload = multer({ storage: storage });
+// Multer para manejar la subida de archivos (usamos memoria para Vercel)
+const upload = multer({ storage: multer.memoryStorage() });
 
 // Credenciales (Ahora leídas de admin_data.json)
 const SESSION_SECRET = 'graco-secret-2026';
@@ -190,104 +182,90 @@ app.post('/api/logout', (req, res) => {
 });
 
 app.post('/api/products', requireAuth, upload.single('imagen'), async (req, res) => {
-    const { nombre_es, nombre_en, descripcion_es, descripcion_en, categoria, isEco, codigo, dimension, unidad_empaque, imagen_url } = req.body;
-    
-    let finalImageUrl = imagen_url || '';
+    try {
+        const { codigo, nombre_es, nombre_en, descripcion_es, descripcion_en, dimension, unidad_empaque, categoria, isEco, imagen_url } = req.body;
+        
+        let finalImageUrl = imagen_url;
 
-    // Si hay un archivo, lo subimos a Cloudinary desde el servidor
-    if (req.file) {
-        try {
-            const result = await cloudinary.uploader.upload(req.file.path, {
-                folder: 'graco/productos',
-                use_filename: true
+        if (req.file) {
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            const result = await cloudinary.uploader.upload(dataURI, {
+                folder: 'graco/productos'
             });
             finalImageUrl = result.secure_url;
-            
-            // Opcional: Eliminar archivo temporal local después de subirlo a la nube
-            fs.unlinkSync(req.file.path);
-        } catch (error) {
-            console.error('ERROR CLOUDINARY:', error);
-            return res.status(500).json({ 
-                error: 'Error al subir imagen a la nube', 
-                details: error.message,
-                tip: 'Asegúrate de haber configurado correctamente el api_secret en server.js'
-            });
         }
-    }
 
-    fs.readFile(DB_FILE, 'utf8', (err, data) => {
-        if (err) return res.status(500).json({ error: 'Error leyendo DB' });
-        
-        let productos = JSON.parse(data);
-        const newProduct = {
+        if (!finalImageUrl) {
+            return res.status(400).json({ error: 'La imagen es obligatoria' });
+        }
+
+        const productos = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+        const nuevoProducto = {
             id: Date.now().toString(),
-            codigo: codigo || '',
+            codigo,
             nombre_es,
             nombre_en,
             descripcion_es,
             descripcion_en,
-            dimension: dimension || '',
-            unidad_empaque: unidad_empaque || '',
+            dimension,
+            unidad_empaque,
             categoria,
             imagen: finalImageUrl,
             isEco: isEco === 'true' || isEco === true
         };
 
-        productos.push(newProduct);
+        productos.push(nuevoProducto);
+        fs.writeFileSync(DB_FILE, JSON.stringify(productos, null, 2));
 
-        fs.writeFile(DB_FILE, JSON.stringify(productos, null, 2), (err) => {
-            if (err) return res.status(500).json({ error: 'Error guardando DB' });
-            res.json(newProduct);
-        });
-    });
+        res.status(201).json(nuevoProducto);
+    } catch (error) {
+        console.error('ERROR AL CREAR PRODUCTO:', error);
+        res.status(500).json({ error: 'Error al crear producto' });
+    }
 });
 
 app.put('/api/products/:id', requireAuth, upload.single('imagen'), async (req, res) => {
-    const { id } = req.params;
-    const { nombre_es, nombre_en, descripcion_es, descripcion_en, categoria, isEco, codigo, dimension, unidad_empaque, imagen_url } = req.body;
-
-    fs.readFile(DB_FILE, 'utf8', async (err, data) => {
-        if (err) return res.status(500).json({ error: 'Error leyendo DB' });
+    try {
+        const { id } = req.params;
+        const { codigo, nombre_es, nombre_en, descripcion_es, descripcion_en, dimension, unidad_empaque, categoria, isEco, imagen_url } = req.body;
         
-        let productos = JSON.parse(data);
-        const index = productos.findIndex(p => p.id === id);
-        
-        if (index === -1) return res.status(404).json({ error: 'Producto no encontrado' });
+        const productos = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+        const idx = productos.findIndex(p => p.id === id);
 
-        let finalImageUrl = imagen_url || productos[index].imagen;
+        if (idx === -1) return res.status(404).json({ error: 'Producto no encontrado' });
+
+        let finalImageUrl = imagen_url || productos[idx].imagen;
 
         if (req.file) {
-            try {
-                const result = await cloudinary.uploader.upload(req.file.path, {
-                    folder: 'graco/productos',
-                    use_filename: true
-                });
-                finalImageUrl = result.secure_url;
-                fs.unlinkSync(req.file.path);
-            } catch (error) {
-                console.error('ERROR CLOUDINARY:', error);
-            }
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            const result = await cloudinary.uploader.upload(dataURI, {
+                folder: 'graco/productos'
+            });
+            finalImageUrl = result.secure_url;
         }
 
-        productos[index] = {
-            ...productos[index],
-            codigo: codigo || productos[index].codigo,
-            nombre_es: nombre_es || productos[index].nombre_es,
-            nombre_en: nombre_en || productos[index].nombre_en,
-            descripcion_es: descripcion_es !== undefined ? descripcion_es : productos[index].descripcion_es,
-            descripcion_en: descripcion_en !== undefined ? descripcion_en : productos[index].descripcion_en,
-            dimension: dimension || productos[index].dimension,
-            unidad_empaque: unidad_empaque || productos[index].unidad_empaque,
-            categoria: categoria || productos[index].categoria,
+        productos[idx] = {
+            ...productos[idx],
+            codigo: codigo || productos[idx].codigo,
+            nombre_es: nombre_es || productos[idx].nombre_es,
+            nombre_en: nombre_en || productos[idx].nombre_en,
+            descripcion_es: descripcion_es !== undefined ? descripcion_es : productos[idx].descripcion_es,
+            descripcion_en: descripcion_en !== undefined ? descripcion_en : productos[idx].descripcion_en,
+            dimension: dimension || productos[idx].dimension,
+            unidad_empaque: unidad_empaque || productos[idx].unidad_empaque,
+            categoria: categoria || productos[idx].categoria,
             imagen: finalImageUrl,
-            isEco: isEco !== undefined ? (isEco === 'true' || isEco === true) : productos[index].isEco
+            isEco: isEco !== undefined ? (isEco === 'true' || isEco === true) : productos[idx].isEco
         };
 
-        fs.writeFile(DB_FILE, JSON.stringify(productos, null, 2), (err) => {
-            if (err) return res.status(500).json({ error: 'Error guardando DB' });
-            res.json(productos[index]);
-        });
-    });
+        fs.writeFileSync(DB_FILE, JSON.stringify(productos, null, 2));
+        res.json(productos[idx]);
+    } catch (error) {
+        console.error('ERROR AL ACTUALIZAR PRODUCTO:', error);
+        res.status(500).json({ error: 'Error al editar producto' });
+    }
 });
 
 app.delete('/api/products/:id', requireAuth, (req, res) => {
