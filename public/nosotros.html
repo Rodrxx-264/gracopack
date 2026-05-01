@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nosotros | GRACO PACK</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#0F4C81', green: '#16A34A' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hidden-lang {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-fixed bg-cover bg-center text-slate-800 font-sans antialiased selection:bg-brand-green selection:text-white"
+    style="background-image: url('fondog.jpg');">
+
+    <div class="min-h-screen w-full bg-white/95 backdrop-blur-[3px]">
+
+        <!-- HEADER (Igual al index) -->
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+                <a href="inicio.html" class="block">
+                    <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+                </a>
+
+                <nav class="hidden lg:flex gap-8 text-sm font-medium items-center">
+                    <a href="inicio.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                        <span class="lang-es">Inicio</span><span class="lang-en hidden-lang">Home</span>
+                    </a>
+                    <a href="index.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                        <span class="lang-es">Catálogo</span><span class="lang-en hidden-lang">Catalog</span>
+                    </a>
+                    <a href="nosotros.html" class="text-brand-blue font-semibold transition-colors">
+                        <span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About Us</span>
+                    </a>
+                    <a href="contacto.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                        <span class="lang-es">Contacto</span><span class="lang-en hidden-lang">Contact</span>
+                    </a>
+                </nav>
+
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:flex items-center text-xs font-semibold text-gray-500">
+                        <button onclick="setLanguage('es')" id="btn-es"
+                            class="text-brand-blue transition-colors focus:outline-none">ES</button>
+                        <span class="mx-2">|</span>
+                        <button onclick="setLanguage('en')" id="btn-en"
+                            class="hover:text-brand-blue transition-colors focus:outline-none">EN</button>
+                    </div>
+                    <a href="contacto.html"
+                        class="hidden md:inline-block px-5 py-2 bg-brand-green text-white text-sm font-medium rounded-full hover:bg-brand-green/90 shadow-sm transition-all">
+                        <span class="lang-es">Cotizar</span><span class="lang-en hidden-lang">Quote</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- HERO CORPORATIVO -->
+        <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-brand-blue mb-6 tracking-tighter">
+                <span class="lang-es">Expertos en <span class="text-brand-green">Protección</span></span>
+                <span class="lang-en hidden-lang">Experts in <span class="text-brand-green">Protection</span></span>
+            </h1>
+            <p class="text-xl text-gray-500 font-light leading-relaxed max-w-2xl mx-auto">
+                <span class="lang-es">Nos dedicamos a la fabricación y comercialización de empaques para alimentos de
+                    alta calidad y confiabilidad.</span>
+                <span class="lang-en hidden-lang">Dedicated to the manufacture and commercialization of high quality and
+                    reliable food packaging.</span>
+            </p>
+        </section>
+
+        <!-- SOBRE NOSOTROS -->
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Historia -->
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                    <div
+                        class="w-12 h-12 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-4">
+                        <span class="lang-es">Nuestra Historia</span><span class="lang-en hidden-lang">Our
+                            History</span>
+                    </h3>
+                    <p class="text-gray-500 font-light leading-relaxed">
+                        <span class="lang-es">Graco Pack, S.A. nace para ser líder en servicio y calidad. Es
+                            fundada en el año 2002 con la idea de fabricar envases innovadores de PET, PP y OPS y así
+                            poder ofrecerles a nuestros clientes ventaja competitiva a su negocio. Con más productos e
+                            implementando nuevas tecnologías en nuestra planta de producción hemos expandido nuestros
+                            servicios y hoy somos líderes en Centro América en la producción de domos, deli container y
+                            bandejas tipo clamshells, todo esto se ha logrado gracias a la confianza de nuestros
+                            clientes.</span>
+                        <span class="lang-en hidden-lang">Graco Pack, S.A. was founded in 2002 with the idea of
+                            manufacturing innovative PET, PP, and OPS containers to provide our clients with a
+                            competitive advantage. Thanks to the trust of our clients, we have expanded our services and
+                            are now leaders in Central America in the production of domes, deli containers, and
+                            clamshell trays.</span>
+                    </p>
+                </div>
+                <!-- Misión -->
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                    <div
+                        class="w-12 h-12 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-4">
+                        <span class="lang-es">Nuestra Misión</span><span class="lang-en hidden-lang">Our Mission</span>
+                    </h3>
+                    <p class="text-gray-500 font-light leading-relaxed">
+                        <span class="lang-es">Ser el proveedor eficaz y eficiente de soluciones integrales de
+                            empaque para la industria alimenticia, apoyándonos en tecnología avanzada, personal
+                            altamente calificado y un inquebrantable compromiso de servicio.</span>
+                        <span class="lang-en hidden-lang">To be the effective and efficient supplier of integral
+                            packaging solutions for the food industry, relying on advanced technology, highly qualified
+                            personnel, and an unwavering commitment to service.</span>
+                    </p>
+                </div>
+                <!-- Visión -->
+                <div class="bg-white p-10 rounded-3xl border border-gray-100 shadow-sm">
+                    <div
+                        class="w-12 h-12 bg-brand-blue/10 text-brand-blue rounded-full flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-4">
+                        <span class="lang-es">Nuestra Visión</span><span class="lang-en hidden-lang">Our Vision</span>
+                    </h3>
+                    <p class="text-gray-500 font-light leading-relaxed">
+                        <span class="lang-es">Con calidad y servicio, consolidarnos como la empresa más importante de
+                            la región en la fabricación de empaques para alimentos.</span>
+                        <span class="lang-en hidden-lang">With quality and service, consolidate ourselves as the most
+                            important company in the region in the manufacture of food packaging.</span>
+                    </p>
+                </div>
+                <!-- Medio Ambiente -->
+                <div class="bg-brand-green/5 p-10 rounded-3xl border border-brand-green/10 shadow-sm">
+                    <div
+                        class="w-12 h-12 bg-brand-green/20 text-brand-green rounded-full flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-green mb-4">
+                        <span class="lang-es">Medio Ambiente</span><span class="lang-en hidden-lang">Environment</span>
+                    </h3>
+                    <p class="text-gray-600 font-light leading-relaxed">
+                        <span class="lang-es">Nuestra responsabilidad social y empresarial inicia desde la selección
+                            de nuestros colores institucionales, colores que representan los elementos fundamentales de
+                            la vida: el agua azul y la naturaleza verde, continuando con el uso de materias primas
+                            reciclables y llegando al punto más importante: nuestra gente, un equipo de personas que
+                            trabaja duro para que usted como parte del medio ambiente, disfrute de una vida placentera
+                            con productos que satisfacen sus necesidades y que además, son productos amigos del medio
+                            ambiente.</span>
+                        <span class="lang-en hidden-lang">Our social and business responsibility begins with the
+                            selection of our institutional colors, colors that represent the fundamental elements of
+                            life: blue water and green nature, continuing with the use of recycled raw materials and
+                            reaching the most important point: our people, a team of people who work hard so that you
+                            as part of the environment, enjoy a pleasant life with products that satisfy your needs
+                            and are also environmentally friendly.</span>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CERTIFICACIONES -->
+        <section class="bg-brand-blue py-20 text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span
+                    class="inline-block px-4 py-1.5 bg-white/10 rounded-full text-xs font-semibold tracking-wider uppercase mb-6 text-brand-green border border-brand-green/30">
+                    <span class="lang-es">Garantía de Calidad</span><span class="lang-en hidden-lang">Quality
+                        Guarantee</span>
+                </span>
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tighter mb-8">
+                    <span class="lang-es">Certificación FDA</span><span class="lang-en hidden-lang">FDA
+                        Certification</span>
+                </h2>
+                <p class="text-blue-100 font-light text-lg mb-12 max-w-3xl mx-auto leading-relaxed">
+                    <span class="lang-es">Nuestros materiales, desde el PET hasta el Polipapel, cumplen estrictamente
+                        con los estándares internacionales para estar en contacto directo con alimentos. Priorizamos la
+                        higiene y la salud pública.</span>
+                    <span class="lang-en hidden-lang">Our materials, from PET to Poly-paper, strictly comply with
+                        international standards to be in direct contact with food. We prioritize hygiene and public
+                        health.</span>
+                </p>
+                <div class="flex justify-center, gap-6">
+                    <div class="bg-white/5 border border-white/10 px-8 py-6 rounded-2xl backdrop-blur-sm">
+                        <i class="fa-solid fa-shield-halved text-3xl text-brand-green mb-3"></i>
+                        <div class="font-bold"><span class="lang-es">Materiales Seguros</span><span
+                                class="lang-en hidden-lang">Safe Materials</span></div>
+                    </div>
+                    <div class="bg-white/5 border border-white/10 px-8 py-6 rounded-2xl backdrop-blur-sm">
+                        <i class="fa-solid fa-recycle text-3xl text-brand-green mb-3"></i>
+                        <div class="font-bold"><span class="lang-es">100% Reciclables</span><span
+                                class="lang-en hidden-lang">100% Recyclable</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER CONTACTO (Igual al index) -->
+        <footer id="contacto" class="bg-white border-t border-gray-200 pt-16 pb-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+                    <div>
+                        <a href="inicio.html" class="block mb-6">
+                            <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+                        </a>
+                        <p class="text-sm text-gray-500 font-light max-w-sm leading-relaxed">
+                            <span class="lang-es">Se dedica a la fabricación y comercialización de empaques para
+                                alimentos de alta calidad y confiabilidad.</span>
+                            <span class="lang-en hidden-lang">Dedicated to the manufacture and commercialization of high
+                                quality and reliable food packaging.</span>
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-brand-blue mb-4">
+                            <span class="lang-es">Contáctenos</span><span class="lang-en hidden-lang">Contact Us</span>
+                        </h4>
+                        <ul class="space-y-3 text-sm text-gray-500 font-light">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-building mt-1 text-brand-green w-4"></i>
+                                <span><strong>GRACO PACK DE Centroamérica, S.A.</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-earth-americas mt-1 text-brand-green w-4"></i>
+                                <span>Guatemala, C.A.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-phone mt-1 text-brand-green w-4"></i>
+                                <span>PBX: <strong>6628-2600</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-brand-blue mb-4">
+                            <span class="lang-es">Navegación</span><span class="lang-en hidden-lang">Navigation</span>
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-500 font-light">
+                            <li><a href="index.html" class="hover:text-brand-blue">
+                                    <span class="lang-es">Catálogo</span><span
+                                        class="lang-en hidden-lang">Catalog</span>
+                                </a></li>
+                            <li><a href="nosotros.html" class="hover:text-brand-blue">
+                                    <span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About
+                                        Us</span>
+                                </a></li>
+                            <li><a href="contacto.html" class="hover:text-brand-blue">
+                                    <span class="lang-es">Contacto</span><span
+                                        class="lang-en hidden-lang">Contact</span>
+                                </a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-gray-100 pt-8 flex justify-between items-center text-xs text-gray-400 font-light">
+                    <p>&copy; 2026 GRACO PACK DE Centroamérica, S.A.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT DE IDIOMAS -->
+    <script>
+        function setLanguage(lang) {
+            localStorage.setItem('gracoLang', lang);
+
+            document.querySelectorAll('.lang-es').forEach(el => {
+                if (lang === 'es') el.classList.remove('hidden-lang');
+                else el.classList.add('hidden-lang');
+            });
+            document.querySelectorAll('.lang-en').forEach(el => {
+                if (lang === 'en') el.classList.remove('hidden-lang');
+                else el.classList.add('hidden-lang');
+            });
+
+            const btnEs = document.getElementById('btn-es');
+            const btnEn = document.getElementById('btn-en');
+            if (lang === 'es') {
+                btnEs.classList.add('text-brand-blue');
+                btnEs.classList.remove('text-gray-500');
+                btnEn.classList.add('text-gray-500');
+                btnEn.classList.remove('text-brand-blue');
+            } else {
+                btnEn.classList.add('text-brand-blue');
+                btnEn.classList.remove('text-gray-500');
+                btnEs.classList.add('text-gray-500');
+                btnEs.classList.remove('text-brand-blue');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('gracoLang') || 'es';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+
+</html>

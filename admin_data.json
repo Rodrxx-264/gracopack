@@ -1,0 +1,8 @@
+[
+  {
+    "username": "administracion",
+    "password": "$2b$10$PMJyv00zYfaDBq.yhr/qxO76Ee7C.L6es4j/1kEeASTozDbU22Kmi",
+    "twoFactorSecret": "ENFW6SL3NZHTCSR6IVSSG5SGOZRUOZBEM4ZVETKYEYSECLZBHRPA",
+    "twoFactorEnabled": true
+  }
+]

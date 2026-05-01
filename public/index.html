@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRACO PACK | Catálogo de Productos</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#0F4C81', green: '#16A34A' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Language toggling class */
+        .hidden-lang { display: none !important; }
+    </style>
+</head>
+<body class="bg-fixed bg-cover bg-center text-slate-800 font-sans antialiased selection:bg-brand-green selection:text-white" style="background-image: url('fondog.jpg');">
+
+    <div class="min-h-screen w-full bg-white/95 backdrop-blur-[3px]">
+
+        <!-- HEADER -->
+        <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+                <a href="inicio.html" class="block">
+                    <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+                </a>
+                
+                <nav class="hidden lg:flex gap-8 text-sm font-medium items-center">
+                    <a href="inicio.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                        <span class="lang-es">Inicio</span><span class="lang-en hidden-lang">Home</span>
+                    </a>
+                    <a href="index.html" class="text-brand-blue font-semibold transition-colors">
+                        <span class="lang-es">Catálogo</span><span class="lang-en hidden-lang">Catalog</span>
+                    </a>
+                    <a href="nosotros.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                        <span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About Us</span>
+                    </a>
+                    <a href="contacto.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                        <span class="lang-es">Contacto</span><span class="lang-en hidden-lang">Contact</span>
+                    </a>
+                </nav>
+
+                <div class="flex items-center gap-6">
+                    <div class="hidden md:flex items-center text-xs font-semibold text-gray-500">
+                        <button onclick="setLanguage('es')" id="btn-es" class="text-brand-blue transition-colors focus:outline-none">ES</button>
+                        <span class="mx-2">|</span>
+                        <button onclick="setLanguage('en')" id="btn-en" class="hover:text-brand-blue transition-colors focus:outline-none">EN</button>
+                    </div>
+                    <a href="contacto.html" class="hidden md:inline-block px-5 py-2 bg-brand-green text-white text-sm font-medium rounded-full hover:bg-brand-green/90 shadow-sm transition-all">
+                        <span class="lang-es">Cotizar</span><span class="lang-en hidden-lang">Quote</span>
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- CATALOGO DIRECTO -->
+        <section id="productos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+                <div>
+                    <h1 class="text-4xl font-bold text-brand-blue tracking-tight mb-2">
+                        <span class="lang-es">Catálogo de Productos</span><span class="lang-en hidden-lang">Product Catalog</span>
+                    </h1>
+                    <p class="text-gray-500 font-light">
+                        <span class="lang-es">Explora nuestras 19 líneas de empaque especializado B2B.</span>
+                        <span class="lang-en hidden-lang">Explore our 19 specialized B2B packaging lines.</span>
+                    </p>
+                </div>
+                <div class="relative w-full md:w-72">
+                    <span class="lang-es"><input type="text" placeholder="Buscar producto..." class="w-full bg-white text-sm border border-gray-200 rounded-full py-3 pl-12 pr-4 focus:border-brand-green focus:ring-1 focus:ring-brand-green focus:outline-none transition-all shadow-sm"></span>
+                    <span class="lang-en hidden-lang"><input type="text" placeholder="Search product..." class="w-full bg-white text-sm border border-gray-200 rounded-full py-3 pl-12 pr-4 focus:border-brand-green focus:ring-1 focus:ring-brand-green focus:outline-none transition-all shadow-sm"></span>
+                    <i class="fa-solid fa-search absolute left-5 top-3.5 text-gray-400 text-sm"></i>
+                </div>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+                
+                <!-- Menú Lateral (Sidebar) -->
+                <aside class="w-full lg:w-1/4 xl:w-1/5 shrink-0">
+                    <div class="sticky top-28 bg-white p-6 rounded-3xl border border-gray-100 shadow-sm">
+                        <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 border-b border-gray-100 pb-3">
+                            <span class="lang-es">Categorías</span><span class="lang-en hidden-lang">Categories</span>
+                        </h3>
+                        <div class="flex flex-col gap-1.5 max-h-[60vh] overflow-y-auto scrollbar-hide pr-2">
+                            <button class="w-full text-left px-4 py-2.5 bg-brand-blue/10 text-brand-blue text-sm font-semibold rounded-xl transition-all">
+                                <span class="lang-es">Todos los Productos</span><span class="lang-en hidden-lang">All Products</span>
+                            </button>
+                            
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase mt-4 mb-2 px-2"><span class="lang-es">Línea Ecológica</span><span class="lang-en hidden-lang">Eco Line</span></h4>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-green text-sm font-medium rounded-xl transition-all flex items-center justify-between group">
+                                Empaques Foam Bio <i class="fa-solid fa-leaf text-[10px] text-brand-green opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-green text-sm font-medium rounded-xl transition-all flex items-center justify-between group">
+                                Ecológico GP <i class="fa-solid fa-leaf text-[10px] text-brand-green opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                            </button>
+                            
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase mt-4 mb-2 px-2">Domos & Containers</h4>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Deli Sello de Seguridad</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Deli Containers</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Domos Pasteleros CP</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Domos Pasteleros SCI</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Bandejas Abisagradas</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Clamshells</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Ensaladeras</button>
+                            
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase mt-4 mb-2 px-2"><span class="lang-es">Bandejas & Platos</span><span class="lang-en hidden-lang">Trays & Plates</span></h4>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Bandejas para Helado</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Bandejas para Huevos</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Otras Bandejas</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Platos Desechables</button>
+                            
+                            <h4 class="text-[10px] font-bold text-gray-400 uppercase mt-4 mb-2 px-2"><span class="lang-es">Vasos & Accesorios</span><span class="lang-en hidden-lang">Cups & Accessories</span></h4>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Vasos de Polipapel</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Vasos Multiusos</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Vasos Impresos</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Tapas para Vasos</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Cubiertos Desechables</button>
+                            <button class="w-full text-left px-4 py-2 text-gray-600 hover:bg-gray-50 hover:text-brand-blue text-sm font-medium rounded-xl transition-all">Pajillas</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Grilla -->
+                <div id="productsGrid" class="w-full lg:w-3/4 xl:w-4/5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-10 h-max">
+                    <div class="col-span-full text-center py-12 text-slate-400">
+                        <i class="fa-solid fa-spinner fa-spin text-2xl mb-4"></i>
+                        <p class="lang-es">Cargando catálogo...</p>
+                        <p class="lang-en hidden-lang">Loading catalog...</p>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+
+        <!-- FOOTER CONTACTO -->
+        <footer id="contacto" class="bg-white border-t border-gray-200 pt-16 pb-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+                    
+                    <div>
+                        <a href="inicio.html" class="block mb-6">
+                            <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+                        </a>
+                        <p class="text-sm text-gray-500 font-light max-w-sm leading-relaxed">
+                            <span class="lang-es">Se dedica a la fabricación y comercialización de empaques para alimentos de alta calidad y confiabilidad.</span>
+                            <span class="lang-en hidden-lang">Dedicated to the manufacture and commercialization of high quality and reliable food packaging.</span>
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-brand-blue mb-4">
+                            <span class="lang-es">Contáctenos</span><span class="lang-en hidden-lang">Contact Us</span>
+                        </h4>
+                        <ul class="space-y-3 text-sm text-gray-500 font-light">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-building mt-1 text-brand-green w-4"></i>
+                                <span><strong>GRACO PACK DE Centroamérica, S.A.</strong></span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-earth-americas mt-1 text-brand-green w-4"></i>
+                                <span>Guatemala, C.A.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-phone mt-1 text-brand-green w-4"></i>
+                                <span>PBX: <strong>6628-2600</strong></span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-brand-blue mb-4">
+                            <span class="lang-es">Navegación</span><span class="lang-en hidden-lang">Navigation</span>
+                        </h4>
+                        <ul class="space-y-2 text-sm text-gray-500 font-light">
+                            <li><a href="index.html" class="hover:text-brand-blue">
+                                <span class="lang-es">Catálogo</span><span class="lang-en hidden-lang">Catalog</span>
+                            </a></li>
+                            <li><a href="nosotros.html" class="hover:text-brand-blue">
+                                <span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About Us</span>
+                            </a></li>
+                            <li><a href="contacto.html" class="hover:text-brand-blue">
+                                <span class="lang-es">Contacto</span><span class="lang-en hidden-lang">Contact</span>
+                            </a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="border-t border-gray-100 pt-8 flex justify-between items-center text-xs text-gray-400 font-light">
+                    <p>&copy; 2026 GRACO PACK DE Centroamérica, S.A.</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- SCRIPT DE IDIOMAS -->
+    <script>
+        function setLanguage(lang) {
+            localStorage.setItem('gracoLang', lang);
+            
+            // Ocultar/Mostrar textos
+            document.querySelectorAll('.lang-es').forEach(el => {
+                if(lang === 'es') el.classList.remove('hidden-lang');
+                else el.classList.add('hidden-lang');
+            });
+            document.querySelectorAll('.lang-en').forEach(el => {
+                if(lang === 'en') el.classList.remove('hidden-lang');
+                else el.classList.add('hidden-lang');
+            });
+
+            // Estilos del selector
+            const btnEs = document.getElementById('btn-es');
+            const btnEn = document.getElementById('btn-en');
+            if(lang === 'es') {
+                btnEs.classList.add('text-brand-blue');
+                btnEs.classList.remove('text-gray-500');
+                btnEn.classList.add('text-gray-500');
+                btnEn.classList.remove('text-brand-blue');
+            } else {
+                btnEn.classList.add('text-brand-blue');
+                btnEn.classList.remove('text-gray-500');
+                btnEs.classList.add('text-gray-500');
+                btnEs.classList.remove('text-brand-blue');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('gracoLang') || 'es';
+            setLanguage(savedLang);
+            loadProducts(); // Cargar productos al iniciar
+        });
+
+        // Lógica de carga dinámica
+        let allProducts = [];
+
+        async function loadProducts() {
+            try {
+                const res = await fetch('/api/products');
+                allProducts = await res.json();
+                renderProducts(allProducts);
+                setupFilters();
+            } catch (error) {
+                document.getElementById('productsGrid').innerHTML = '<p class="col-span-full text-center text-red-500">Error cargando el catálogo.</p>';
+            }
+        }
+
+        function renderProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            if (products.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-slate-400 py-12">No se encontraron productos.</p>';
+                return;
+            }
+
+            const currentLang = localStorage.getItem('gracoLang') || 'es';
+
+            products.forEach(p => {
+                const ecoBadge = p.isEco ? `
+                    <div class="absolute top-2 right-2 bg-white text-brand-green text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                        <i class="fa-solid fa-leaf"></i> Bio
+                    </div>` : '';
+                const bgClass = p.isEco ? 'bg-brand-green/5' : 'bg-gray-50';
+
+                const html = `
+                    <article onclick="openProductModal('${p.id}')" class="group cursor-pointer bg-white p-5 rounded-3xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                        <div class="${bgClass} rounded-2xl aspect-[4/3] p-4 mb-4 flex items-center justify-center relative">
+                            ${ecoBadge}
+                            <img src="${p.imagen}" alt="${p.nombre_es}" class="w-full h-full object-contain mix-blend-multiply group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <h3 class="text-base font-bold text-${p.isEco ? 'brand-green' : 'brand-blue'} tracking-tight mb-2">
+                            <span class="lang-es ${currentLang === 'en' ? 'hidden-lang' : ''}">${p.nombre_es}</span>
+                            <span class="lang-en ${currentLang === 'es' ? 'hidden-lang' : ''}">${p.nombre_en}</span>
+                        </h3>
+                        <p class="text-xs text-gray-500 mb-4 font-light flex-grow">
+                            <span class="lang-es ${currentLang === 'en' ? 'hidden-lang' : ''}">${p.descripcion_es}</span>
+                            <span class="lang-en ${currentLang === 'es' ? 'hidden-lang' : ''}">${p.descripcion_en}</span>
+                        </p>
+                        <div class="text-[10px] text-gray-400 font-semibold uppercase tracking-wider flex justify-between items-center mt-2 pt-4 border-t border-gray-50">
+                            <span class="lang-es ${currentLang === 'en' ? 'hidden-lang' : ''}">Ver Ficha Técnica <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                            <span class="lang-en ${currentLang === 'es' ? 'hidden-lang' : ''}">View Data Sheet <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        </div>
+                    </article>
+                `;
+                grid.innerHTML += html;
+            });
+        }
+
+        function setupFilters() {
+            const buttons = document.querySelectorAll('aside button');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const textContent = btn.innerText.trim();
+                    const catName = textContent.replace('Todos los Productos', 'Todos')
+                                                .replace('All Products', 'Todos'); 
+                    
+                    let filtered = [];
+                    if (textContent.includes('Todos') || textContent.includes('All')) {
+                        filtered = allProducts;
+                    } else {
+                        filtered = allProducts.filter(p => textContent.includes(p.categoria));
+                    }
+                    renderProducts(filtered);
+                });
+            });
+        }
+
+        // Modal Logic
+        function openProductModal(id) {
+            const p = allProducts.find(prod => prod.id === id);
+            if (!p) return;
+            
+            const currentLang = localStorage.getItem('gracoLang') || 'es';
+            
+            document.getElementById('modalImage').src = p.imagen;
+            
+            // Name
+            document.getElementById('modalNameEs').textContent = p.nombre_es;
+            document.getElementById('modalNameEn').textContent = p.nombre_en;
+            
+            // Description
+            document.getElementById('modalDescEs').textContent = p.descripcion_es;
+            document.getElementById('modalDescEn').textContent = p.descripcion_en;
+            
+            // Info fields
+            document.getElementById('modalCode').textContent = p.codigo || 'N/A';
+            document.getElementById('modalDim').textContent = p.dimension || 'N/A';
+            document.getElementById('modalPack').textContent = p.unidad_empaque || 'N/A';
+            
+            // Toggle visibility classes based on lang
+            setLanguage(currentLang); // Re-run to catch the modal elements
+
+            document.getElementById('productModal').classList.remove('hidden');
+            document.getElementById('productModal').classList.add('flex');
+        }
+
+        function closeProductModal() {
+            document.getElementById('productModal').classList.add('hidden');
+            document.getElementById('productModal').classList.remove('flex');
+        }
+    </script>
+
+    <!-- PRODUCT MODAL -->
+    <div id="productModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 sm:p-6 bg-slate-900/60 backdrop-blur-sm transition-opacity">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative flex flex-col md:flex-row">
+            
+            <!-- Close Button -->
+            <button onclick="closeProductModal()" class="absolute top-4 right-4 bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800 rounded-full w-8 h-8 flex items-center justify-center transition-colors z-10">
+                <i class="fa-solid fa-times"></i>
+            </button>
+
+            <!-- Image Section -->
+            <div class="w-full md:w-1/2 bg-gray-50 p-8 flex items-center justify-center min-h-[300px]">
+                <img id="modalImage" src="" alt="Producto" class="w-full h-full object-contain mix-blend-multiply drop-shadow-md">
+            </div>
+
+            <!-- Info Section -->
+            <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+                <h2 class="text-3xl font-bold text-brand-blue tracking-tight mb-2">
+                    <span id="modalNameEs" class="lang-es"></span>
+                    <span id="modalNameEn" class="lang-en hidden-lang"></span>
+                </h2>
+                
+                <p class="text-gray-500 font-light mb-8">
+                    <span id="modalDescEs" class="lang-es"></span>
+                    <span id="modalDescEn" class="lang-en hidden-lang"></span>
+                </p>
+
+                <div class="space-y-4 mb-10">
+                    <div class="flex flex-col border-b border-gray-100 pb-3">
+                        <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">
+                            <span class="lang-es">Código de Producto</span><span class="lang-en hidden-lang">Product Code</span>
+                        </span>
+                        <span id="modalCode" class="font-medium text-gray-800"></span>
+                    </div>
+                    <div class="flex flex-col border-b border-gray-100 pb-3">
+                        <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">
+                            <span class="lang-es">Dimensiones</span><span class="lang-en hidden-lang">Dimensions</span>
+                        </span>
+                        <span id="modalDim" class="font-medium text-gray-800"></span>
+                    </div>
+                    <div class="flex flex-col border-b border-gray-100 pb-3">
+                        <span class="text-[10px] uppercase font-bold text-gray-400 tracking-wider">
+                            <span class="lang-es">Unidad de Empaque</span><span class="lang-en hidden-lang">Packaging Unit</span>
+                        </span>
+                        <span id="modalPack" class="font-medium text-gray-800"></span>
+                    </div>
+                </div>
+
+                <a href="contacto.html" class="w-full block text-center px-6 py-3.5 bg-brand-green text-white font-semibold rounded-xl hover:bg-brand-green/90 transition-all shadow-sm">
+                    <span class="lang-es">Solicitar Cotización</span><span class="lang-en hidden-lang">Request Quote</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

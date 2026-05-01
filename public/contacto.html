@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRACO PACK | Contacto</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: { blue: '#0F4C81', green: '#16A34A' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hidden-lang {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-800 font-sans antialiased selection:bg-brand-green selection:text-white">
+
+    <!-- HEADER -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <a href="inicio.html" class="block">
+                <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+            </a>
+
+            <nav class="hidden lg:flex gap-8 text-sm font-medium items-center">
+                <a href="inicio.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                    <span class="lang-es">Inicio</span><span class="lang-en hidden-lang">Home</span>
+                </a>
+                <a href="index.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                    <span class="lang-es">Catálogo</span><span class="lang-en hidden-lang">Catalog</span>
+                </a>
+                <a href="nosotros.html" class="text-gray-600 hover:text-brand-blue transition-colors">
+                    <span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About Us</span>
+                </a>
+                <a href="contacto.html" class="text-brand-blue font-semibold transition-colors">
+                    <span class="lang-es">Contacto</span><span class="lang-en hidden-lang">Contact</span>
+                </a>
+            </nav>
+
+            <div class="flex items-center gap-6">
+                <div class="hidden md:flex items-center text-xs font-semibold text-gray-500">
+                    <button onclick="setLanguage('es')" id="btn-es"
+                        class="text-brand-blue transition-colors focus:outline-none">ES</button>
+                    <span class="mx-2">|</span>
+                    <button onclick="setLanguage('en')" id="btn-en"
+                        class="hover:text-brand-blue transition-colors focus:outline-none">EN</button>
+                </div>
+                <a href="index.html"
+                    class="hidden md:inline-block px-5 py-2 bg-brand-green text-white text-sm font-medium rounded-full hover:bg-brand-green/90 shadow-sm transition-all">
+                    <span class="lang-es">Cotizar</span><span class="lang-en hidden-lang">Quote</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO CONTACTO -->
+    <section class="bg-gray-50 py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold text-brand-blue mb-4 tracking-tight">
+                <span class="lang-es">Contáctenos</span><span class="lang-en hidden-lang">Contact Us</span>
+            </h1>
+            <p class="text-gray-500 font-light max-w-2xl mx-auto">
+                <span class="lang-es">Estamos listos para atender tus requerimientos de empaque industrial. Envíanos un
+                    mensaje y te contactaremos a la brevedad.</span>
+                <span class="lang-en hidden-lang">We are ready to attend to your industrial packaging requirements. Send
+                    us a message and we will contact you shortly.</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- FORMULARIO Y MAPA -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+            <!-- FORMULARIO -->
+            <div>
+                <div class="bg-white p-8 rounded-3xl border border-gray-100 shadow-xl shadow-gray-100/50">
+                    <h2 class="text-2xl font-bold text-brand-blue mb-8">
+                        <span class="lang-es">Envíanos un Mensaje</span><span class="lang-en hidden-lang">Send us a
+                            Message</span>
+                    </h2>
+
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <span class="lang-es">Nombre Completo</span><span class="lang-en hidden-lang">Full
+                                    Name</span>
+                            </label>
+                            <input type="text" placeholder="Ej. Juan Pérez"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <span class="lang-es">Correo Electrónico</span><span class="lang-en hidden-lang">Email
+                                    Address</span>
+                            </label>
+                            <input type="email" placeholder="ejemplo@correo.com"
+                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                <span class="lang-es">Comentario</span><span class="lang-en hidden-lang">Comment</span>
+                            </label>
+                            <textarea rows="4" placeholder="..."
+                                class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-brand-green focus:ring-1 focus:ring-brand-green transition-all"></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-brand-blue text-white font-bold py-4 rounded-xl hover:bg-brand-blue/90 transition-all shadow-lg shadow-brand-blue/20">
+                            <span class="lang-es">Enviar Mensaje</span><span class="lang-en hidden-lang">Send
+                                Message</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- INFO CONTACTO Y MAPA -->
+            <div class="flex flex-col gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 p-6 rounded-2xl flex items-start gap-4">
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-brand-green">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-blue text-sm">PBX / Teléfono</h4>
+                            <p class="text-gray-500 text-sm">6628-2600</p>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-6 rounded-2xl flex items-start gap-4">
+                        <div class="bg-white p-3 rounded-xl shadow-sm text-brand-green">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-blue text-sm">Ubicación</h4>
+                            <p class="text-gray-500 text-sm">6 avenida 6-31, Cdad. de Guatemala 01064, Guatemala</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl overflow-hidden border border-gray-100 shadow-lg h-full min-h-[300px]">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30895.300839674706!2d-90.6288923978476!3d14.546990135441382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a73237e98181%3A0xe5cbe29e18125560!2sGraco%20Pack%20de%20Centroam%C3%A9rica%20S.A.!5e0!3m2!1ses!2sus!4v1777667513973!5m2!1ses!2sus"
+                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-gray-200 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <a href="inicio.html" class="block mb-6">
+                        <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+                    </a>
+                    <p class="text-sm text-gray-500 font-light max-w-sm leading-relaxed">
+                        <span class="lang-es">Se dedica a la fabricación y comercialización de empaques para alimentos
+                            de alta calidad y confiabilidad.</span>
+                        <span class="lang-en hidden-lang">Dedicated to the manufacture and commercialization of high
+                            quality and reliable food packaging.</span>
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-brand-blue mb-4">
+                        <span class="lang-es">Contáctenos</span><span class="lang-en hidden-lang">Contact Us</span>
+                    </h4>
+                    <ul class="space-y-3 text-sm text-gray-500 font-light">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-building mt-1 text-brand-green w-4"></i>
+                            <span><strong>GRACO PACK DE Centroamérica, S.A.</strong></span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-earth-americas mt-1 text-brand-green w-4"></i>
+                            <span>6 avenida 6-31, Cdad. de Guatemala 01064, Guatemala</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-phone mt-1 text-brand-green w-4"></i>
+                            <span>PBX: <strong>6628-2600</strong></span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-brand-blue mb-4">
+                        <span class="lang-es">Navegación</span><span class="lang-en hidden-lang">Navigation</span>
+                    </h4>
+                    <ul class="space-y-2 text-sm text-gray-500 font-light">
+                        <li><a href="inicio.html" class="hover:text-brand-blue">
+                                <span class="lang-es">Inicio</span><span class="lang-en hidden-lang">Home</span>
+                            </a></li>
+                        <li><a href="index.html" class="hover:text-brand-blue">
+                                <span class="lang-es">Catálogo</span><span class="lang-en hidden-lang">Catalog</span>
+                            </a></li>
+                        <li><a href="nosotros.html" class="hover:text-brand-blue">
+                                <span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About
+                                    Us</span>
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div
+                class="border-t border-gray-100 pt-8 flex justify-between items-center text-xs text-gray-400 font-light">
+                <p>&copy; 2026 GRACO PACK DE Centroamérica, S.A.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT DE IDIOMAS -->
+    <script>
+        function setLanguage(lang) {
+            localStorage.setItem('gracoLang', lang);
+
+            document.querySelectorAll('.lang-es').forEach(el => {
+                if (lang === 'es') el.classList.remove('hidden-lang');
+                else el.classList.add('hidden-lang');
+            });
+            document.querySelectorAll('.lang-en').forEach(el => {
+                if (lang === 'en') el.classList.remove('hidden-lang');
+                else el.classList.add('hidden-lang');
+            });
+
+            const btnEs = document.getElementById('btn-es');
+            const btnEn = document.getElementById('btn-en');
+            if (lang === 'es') {
+                btnEs.classList.add('text-brand-blue');
+                btnEs.classList.remove('text-gray-500');
+                btnEn.classList.add('text-gray-500');
+                btnEn.classList.remove('text-brand-blue');
+            } else {
+                btnEn.classList.add('text-brand-blue');
+                btnEn.classList.remove('text-gray-500');
+                btnEs.classList.add('text-gray-500');
+                btnEs.classList.remove('text-brand-blue');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('gracoLang') || 'es';
+            setLanguage(savedLang);
+        });
+    </script>
+</body>
+
+</html>
