@@ -37,9 +37,10 @@
     <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
             <a href="inicio.html" class="block">
-                <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 w-auto object-contain">
+                <img src="logocentral2.png" alt="GRACO PACK Logo" class="h-10 md:h-12 w-auto object-contain">
             </a>
 
+            <!-- Desktop Nav -->
             <nav class="hidden lg:flex gap-8 text-sm font-medium items-center">
                 <a href="inicio.html" class="text-gray-600 hover:text-brand-blue transition-colors">
                     <span class="lang-es">Inicio</span><span class="lang-en hidden-lang">Home</span>
@@ -55,7 +56,7 @@
                 </a>
             </nav>
 
-            <div class="flex items-center gap-6">
+            <div class="flex items-center gap-4 md:gap-6">
                 <div class="hidden md:flex items-center text-xs font-semibold text-gray-500">
                     <button onclick="setLanguage('es')" id="btn-es"
                         class="text-brand-blue transition-colors focus:outline-none">ES</button>
@@ -67,7 +68,22 @@
                     class="hidden md:inline-block px-5 py-2 bg-brand-green text-white text-sm font-medium rounded-full hover:bg-brand-green/90 shadow-sm transition-all">
                     <span class="lang-es">Cotizar</span><span class="lang-en hidden-lang">Quote</span>
                 </a>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden text-brand-blue text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-100 p-6 space-y-6 shadow-xl">
+            <nav class="flex flex-col gap-4 text-base font-semibold">
+                <a href="inicio.html" class="text-gray-600"><span class="lang-es">Inicio</span><span class="lang-en hidden-lang">Home</span></a>
+                <a href="index.html" class="text-gray-600"><span class="lang-es">Catálogo</span><span class="lang-en hidden-lang">Catalog</span></a>
+                <a href="nosotros.html" class="text-gray-600"><span class="lang-es">Sobre Nosotros</span><span class="lang-en hidden-lang">About Us</span></a>
+                <a href="contacto.html" class="text-brand-blue"><span class="lang-es">Contacto</span><span class="lang-en hidden-lang">Contact</span></a>
+            </nav>
         </div>
     </header>
 
@@ -256,6 +272,14 @@
             const savedLang = localStorage.getItem('gracoLang') || 'es';
             setLanguage(savedLang);
         });
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('menuIcon');
+            menu.classList.toggle('hidden');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
     </script>
 </body>
 
